@@ -21,8 +21,11 @@ def fraud_prediction(input_data):
         input_data_scaled = scaler.transform(input_data_reshaped)
         input_data_pca = pca.transform(input_data_scaled)
         prediction = loaded_model.predict(input_data_pca)
-        result = ['Non-fraud' if pred == 0 else 'Fraud' for pred in prediction]
-        return result
+        # Interpret the prediction
+        if prediction[0] == 0:
+            return 'Non-fraud', 'success'
+        else:
+            return 'Fraud', 'error'
     except Exception as e:
         return str(e)
 
@@ -114,8 +117,11 @@ def main():
 
         result = ""
         if st.button("Predict"):
-            result = fraud_prediction([[minTimeBetweenSentTnx, maxTimeBetweenSentTnx, avgTimeBetweenSentTnx, minTimeBetweenRecTnx, maxTimeBetweenRecTnx, avgTimeBetweenRecTnx, lifetime, sentTransactions, receivedTransactions, createdContracts, numUniqSentAddress, numUniqRecAddress, minValSent, maxValSent, avgValSent, minValReceived, maxValReceived, avgValReceived, totalTransactions, totalEtherSent, totalEtherReceived, totalEtherSentContracts, totalEtherBalance, activityDays, dailyMax, ratioRecSent, ratioSentTotal, ratioRecTotal, giniSent, giniRec, txFreq, stdBalanceEth]])
+            result, prediction_status = fraud_prediction([[minTimeBetweenSentTnx, maxTimeBetweenSentTnx, avgTimeBetweenSentTnx, minTimeBetweenRecTnx, maxTimeBetweenRecTnx, avgTimeBetweenRecTnx, lifetime, sentTransactions, receivedTransactions, createdContracts, numUniqSentAddress, numUniqRecAddress, minValSent, maxValSent, avgValSent, minValReceived, maxValReceived, avgValReceived, totalTransactions, totalEtherSent, totalEtherReceived, totalEtherSentContracts, totalEtherBalance, activityDays, dailyMax, ratioRecSent, ratioSentTotal, ratioRecTotal, giniSent, giniRec, txFreq, stdBalanceEth]])
+            if prediction_status == 'success':
             st.success(result)
+        else:
+            st.error(result)
 
 if __name__ == '__main__':
     main()
