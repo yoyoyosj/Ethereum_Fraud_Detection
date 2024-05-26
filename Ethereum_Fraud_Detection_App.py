@@ -1,28 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-# In[3]:
-
-
-import streamlit as st
-
-
-# In[1]:
-
-
 import numpy as np
 import pandas as pd
 import pickle
 import streamlit as st
-import sklearn
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import plotly.express as px
 import plotly.graph_objects as go
 
 # Load the saved model and preprocessing objects
-loaded_model = pickle.load(open("trained_model.sav", "rb"))
+loaded_model = pickle.load(open("C:/Users/Yoyoyo SJ/Desktop/UM/3. SEM 2/WQD7006 Machine Learning for Data Science/3. Group Project/trained_model.sav", "rb"))
 with open('scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 with open('pca.pkl', 'rb') as f:
@@ -48,38 +33,38 @@ def main():
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html=True)
-
+    
     mode = st.radio("Select Mode", ("Batch Prediction", "Real-time Prediction"))
 
     if mode == "Batch Prediction":
         uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
-
+        
         if uploaded_file is not None:
             input_df = pd.read_csv(uploaded_file)
-
+            
             if input_df.isnull().values.any():
                 st.warning("Error occured. Please check your file.")
                 return
 
             input_data = input_df.iloc[:, 2:].values.tolist()  # Exclude the first two columns (address and flag)
             true_labels = input_df['flag'].values
-
+            
             if st.button("Predict"):
                 with st.spinner("Processing..."):
                     predictions = fraud_prediction(input_data)
                     predicted_labels = [0 if pred == 'Non-fraud' else 1 for pred in predictions]
-
+                    
                     accuracy = accuracy_score(true_labels, predicted_labels)
                     precision = precision_score(true_labels, predicted_labels)
                     recall = recall_score(true_labels, predicted_labels)
                     f1 = f1_score(true_labels, predicted_labels)
-
+                
                 st.success("Predictions Complete!")
                 st.write(f"**Accuracy:** {accuracy * 100:.2f}%")
                 st.write(f"**Precision:** {precision:.2f}")
                 st.write(f"**Recall:** {recall:.2f}")
                 st.write(f"**F1 Score:** {f1:.2f}")
-
+                
                 input_df['Prediction'] = predictions
                 st.write(input_df)
 
@@ -134,4 +119,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
