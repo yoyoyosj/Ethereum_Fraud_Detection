@@ -7,7 +7,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 # Load the saved model and preprocessing objects
-loaded_model = pickle.load(open("C:/Users/Yoyoyo SJ/Desktop/UM/3. SEM 2/WQD7006 Machine Learning for Data Science/3. Group Project/trained_model.sav", "rb"))
+loaded_model = pickle.load(open("trained_model.sav", "rb"))
 with open('scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 with open('pca.pkl', 'rb') as f:
