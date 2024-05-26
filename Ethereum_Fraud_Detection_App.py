@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 import pickle
 import streamlit as st
+import sklearn
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import plotly.express as px
 import plotly.graph_objects as go
