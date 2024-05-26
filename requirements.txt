@@ -4,4 +4,4 @@ matplotlib==3.8.4
 seaborn==0.13.2
 scikit-learn==1.4.1.post1
 streamlit==1.33.0
-streamlit-javascript==0.1.5
+plotly==5.3.1
