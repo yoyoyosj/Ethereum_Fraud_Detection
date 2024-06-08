@@ -34,7 +34,7 @@ def main():
     """
     st.markdown(html_temp, unsafe_allow_html=True)
     
-    mode = st.radio("Select Mode", ("Batch Prediction", "Real-time Prediction"))
+    mode = st.radio("Select Mode", ("Batch Prediction", "Manual Input"))
 
     if mode == "Batch Prediction":
         uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
@@ -78,7 +78,7 @@ def main():
                     mime='text/csv'
                 )
 
-    elif mode == "Real-time Prediction":
+    elif mode == "Manual Input":
         minTimeBetweenSentTnx = st.text_input("minTimeBetweenSentTnx", "Type Here")
         maxTimeBetweenSentTnx = st.text_input("maxTimeBetweenSentTnx", "Type Here")
         avgTimeBetweenSentTnx = st.text_input("avgTimeBetweenSentTnx", "Type Here")
