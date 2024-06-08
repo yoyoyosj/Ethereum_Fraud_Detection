@@ -28,8 +28,8 @@ def fraud_prediction(input_data):
 
 def main():
     html_temp = """
-    <div style="background-color:tomato;padding:10px">
-    <h2 style="color:white;text-align:center;">Streamlit Ethereum Fraud Detection ML App</h2>
+    <div style="background-color:blue;padding:10px">
+    <h2 style="color:white;text-align:center;">Ethereum Fraud Detection</h2>
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html=True)
