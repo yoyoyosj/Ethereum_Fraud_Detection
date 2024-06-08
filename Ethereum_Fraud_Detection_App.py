@@ -34,6 +34,12 @@ def main():
     """
     st.markdown(html_temp, unsafe_allow_html=True)
     
+    # Path to your image file or a URL
+    image_path = "img/picc.jpg"  # Replace with your image file path or URL
+
+    # Display the image
+    st.image(image_path, use_column_width=True)
+    
     mode = st.radio("Select Mode", ("Batch Prediction", "Manual Input"))
 
     if mode == "Batch Prediction":
