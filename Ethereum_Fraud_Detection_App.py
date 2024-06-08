@@ -79,7 +79,7 @@ def main():
                 )
 
     elif mode == "Manual Input":
-        minTimeBetweenSentTnx = st.text_input("minTimeBetweenSentTnx", "Type Here")
+        minTimeBetweenSentTnx = st.text_input("Minimum time between sent transactions ", "Type Here")
         maxTimeBetweenSentTnx = st.text_input("maxTimeBetweenSentTnx", "Type Here")
         avgTimeBetweenSentTnx = st.text_input("avgTimeBetweenSentTnx", "Type Here")
         minTimeBetweenRecTnx = st.text_input("minTimeBetweenRecTnx", "Type Here")
