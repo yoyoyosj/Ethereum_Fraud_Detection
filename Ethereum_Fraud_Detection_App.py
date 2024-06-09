@@ -35,7 +35,7 @@ def main():
     st.markdown(html_temp, unsafe_allow_html=True)
     
     # Path to image file or a URL
-    image_path = "img/picc.jpg"  # Replace with your image file path or URL
+    image_path = "img/picc.jpg"  
 
     # Display the image
     st.image(image_path, use_column_width=True)
